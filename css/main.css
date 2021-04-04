@@ -1221,7 +1221,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #578218;
+  background: #f50b41;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2559,7 +2559,7 @@ ul.breadcrumb li + li:last-child {
 }
 .post-body {
   font-family: "楷体";
-  opacity: 1;
+  color: rgba(0,0,0,0.8);
   font-size: 1em;
 }
 .post-body h1,
